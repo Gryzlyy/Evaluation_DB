@@ -32,5 +32,17 @@ create table ReservationTickets (
     foreign key (ClientId) references Clients(Id),
     foreign key (FilmId) references Films(Id),
     SeatNumber varchar(4)
-)
+);
 
+create table Roles (
+  IdRole int primary key not null auto_increment,
+  RoleName varchar(100) not null
+);
+
+create table UserRoles (
+    ClientId char(36) not null,
+    RoleId int not null,
+    primary key (ClientId, RoleId),
+    foreign key (ClientId) references Clients(Id),
+    foreign key (RoleId) references Roles(IdRole)
+);
